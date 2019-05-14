@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class OrbitaN : MonoBehaviour {
 
-	public GameObject parent;
-
 	private GameObject orbita1, orbita2;
 
 	void Start () {
 		orbita1 = new GameObject { name = "OrbitaN1" };
 		orbita2 = new GameObject { name = "OrbitaN2" };
-		orbita1.transform.SetParent (parent.transform);
-		orbita2.transform.SetParent (parent.transform);
+		orbita1.transform.SetParent (this.transform);
+		orbita2.transform.SetParent (this.transform);
 		orbita1.transform.position = orbita1.transform.parent.transform.position;
 		orbita2.transform.position = orbita2.transform.parent.transform.position;
 		orbita1.DibujarOrbita (2f, .02f, 2);
