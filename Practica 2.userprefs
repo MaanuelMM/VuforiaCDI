@@ -1,14 +1,16 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\OrbitaCl.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\CollisionController.cs">
     <Files>
       <File FileName="Assets\Resources\Orbita.cs" Line="1" Column="1" />
-      <File FileName="Assets\Resources\OrbitaH.cs" Line="10" Column="45" />
-      <File FileName="Assets\Resources\OrbitaC.cs" Line="7" Column="38" />
-      <File FileName="Assets\Resources\OrbitaN.cs" Line="9" Column="17" />
-      <File FileName="Assets\Resources\OrbitaO.cs" Line="7" Column="38" />
-      <File FileName="Assets\Resources\OrbitaNa.cs" Line="6" Column="2" />
-      <File FileName="Assets\Resources\OrbitaCl.cs" Line="6" Column="2" />
+      <File FileName="Assets\Resources\OrbitaH.cs" Line="1" Column="1" />
+      <File FileName="Assets\Resources\OrbitaC.cs" Line="1" Column="1" />
+      <File FileName="Assets\Resources\OrbitaN.cs" Line="1" Column="1" />
+      <File FileName="Assets\Resources\OrbitaO.cs" Line="1" Column="1" />
+      <File FileName="Assets\Resources\OrbitaNa.cs" Line="1" Column="1" />
+      <File FileName="Assets\Resources\OrbitaCl.cs" Line="1" Column="1" />
+      <File FileName="Assets\Resources\CollisionController.cs" Line="19" Column="1" />
+      <File FileName="Assets\Resources\AtomicScript.cs" Line="10" Column="43" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
