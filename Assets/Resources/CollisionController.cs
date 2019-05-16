@@ -8,47 +8,57 @@ public class CollisionController : MonoBehaviour {
 
 	public GameObject H2OPrefab, CH4Prefab, NH3Prefab, COPrefab, CO2Prefab, NaClPrefab;
 
-	private GameObject H2O, CH4, NH3, CO, CO2, NaCl;
-
 	// Use this for initialization.
 	void Start () {
 		
 	}
 
 	// Update is called once per frame
-	void Update () {
-		if (Vector3.Distance (H.transform.position, O.transform.position) < 10f
-		    & H.GetComponent<AtomicScript> ().isPresent ()
-		    & O.GetComponent<AtomicScript> ().isPresent ())
+	void Update ()
+	{
+		crearMolecula (H, O, H2OPrefab, "H2O");
+		crearMolecula (C, O, CO2Prefab, "CO2");
+		crearMolecula (C, H, CH4Prefab, "CH4");
+		crearMolecula (N, H, NH3Prefab, "NH3");
+		crearMolecula (Na, Cl, NaClPrefab, "NaCl");
+	}
+
+	private void crearMolecula (GameObject Tarjeta1, GameObject Tarjeta2, GameObject Prefab, string nombre)
+	{
+		var Molecula = GameObject.Find (nombre);
+		if (Vector3.Distance (Tarjeta1.transform.position, Tarjeta2.transform.position) < 10f
+			& Tarjeta1.GetComponent<AtomicScript> ().isPresent ()
+			& Tarjeta2.GetComponent<AtomicScript> ().isPresent ())
 		{
-			if (!GameObject.Find ("H2O")) {
-				H.transform.GetChild (0).gameObject.SetActive (false);
-				O.transform.GetChild (0).gameObject.SetActive (false);
-				H2O = (GameObject)Instantiate (H2OPrefab, new Vector3 ((H.transform.position.x + O.transform.position.x) / 2f,
-					(H.transform.position.y + O.transform.position.y) / 2f,
-					(H.transform.position.z + O.transform.position.z) / 2f),
-					new Quaternion ((H.transform.rotation.x + O.transform.rotation.x) / 2f,
-						(H.transform.rotation.y + O.transform.rotation.y) / 2f,
-						(H.transform.rotation.z + O.transform.rotation.z) / 2f,
-						(H.transform.rotation.w + O.transform.rotation.w) / 2f));
-				H2O.name = "H2O";
+			Tarjeta1.transform.GetChild (0).gameObject.SetActive (false);
+			Tarjeta2.transform.GetChild (0).gameObject.SetActive (false);
+			if (!Molecula) {
+				Molecula = (GameObject)Instantiate (Prefab, new Vector3 ((Tarjeta1.transform.position.x + Tarjeta2.transform.position.x) / 2f,
+					(Tarjeta1.transform.position.y + Tarjeta2.transform.position.y) / 2f,
+					(Tarjeta1.transform.position.z + Tarjeta2.transform.position.z) / 2f),
+					new Quaternion ((Tarjeta1.transform.rotation.x + Tarjeta2.transform.rotation.x) / 2f,
+						(Tarjeta1.transform.rotation.y + Tarjeta2.transform.rotation.y) / 2f,
+						(Tarjeta1.transform.rotation.z + Tarjeta2.transform.rotation.z) / 2f,
+						(Tarjeta1.transform.rotation.w + Tarjeta2.transform.rotation.w) / 2f));
+				Molecula.name = nombre;
 			}
 			else
 			{
-				H2O.transform.position = new Vector3 ((H.transform.position.x + O.transform.position.x) / 2f,
-					(H.transform.position.y + O.transform.position.y) / 2f,
-					(H.transform.position.z + O.transform.position.z) / 2f);
-				H2O.transform.rotation = new Quaternion ((H.transform.rotation.x + O.transform.rotation.x) / 2f,
-					(H.transform.rotation.y + O.transform.rotation.y) / 2f,
-					(H.transform.rotation.z + O.transform.rotation.z) / 2f,
-					(H.transform.rotation.w + O.transform.rotation.w) / 2f);
+				Molecula.transform.position = new Vector3 ((Tarjeta1.transform.position.x + Tarjeta2.transform.position.x) / 2f,
+					(Tarjeta1.transform.position.y + Tarjeta2.transform.position.y) / 2f,
+					(Tarjeta1.transform.position.z + Tarjeta2.transform.position.z) / 2f);
+				Molecula.transform.rotation = new Quaternion ((Tarjeta1.transform.rotation.x + Tarjeta2.transform.rotation.x) / 2f,
+					(Tarjeta1.transform.rotation.y + Tarjeta2.transform.rotation.y) / 2f,
+					(Tarjeta1.transform.rotation.z + Tarjeta2.transform.rotation.z) / 2f,
+					(Tarjeta1.transform.rotation.w + Tarjeta2.transform.rotation.w) / 2f);
 			}
 		}
-		else if (GameObject.Find ("H2O"))
+		else if (Molecula)
 		{
-			Destroy (H2O);
-			H.transform.GetChild (0).gameObject.SetActive (true);
-			O.transform.GetChild (0).gameObject.SetActive (true);
+			Destroy (Molecula);
+			Tarjeta1.transform.GetChild (0).gameObject.SetActive (true);
+			Tarjeta2.transform.GetChild (0).gameObject.SetActive (true);
 		}
 	}
+
 }
