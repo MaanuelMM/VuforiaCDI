@@ -7,6 +7,8 @@ public class AtomicScript : MonoBehaviour, ITrackableEventHandler {
 
 	private bool present = false;
 
+	private int numInstancias = 0;
+
 	private TrackableBehaviour mTrackableBehaviour;
 
 	void Start ()
@@ -36,6 +38,21 @@ public class AtomicScript : MonoBehaviour, ITrackableEventHandler {
 	public bool isPresent ()
 	{
 		return present;
+	}
+
+	public int getNumInstancias ()
+	{
+		return numInstancias;
+	}
+
+	public void incrementNumInstancias ()
+	{
+		numInstancias++;
+	}
+
+	public void decrementNumInstancias ()
+	{
+		numInstancias--;
 	}
 
 }

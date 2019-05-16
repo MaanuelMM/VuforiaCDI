@@ -39,15 +39,17 @@ public class AtomicController : MonoBehaviour {
 			& Tarjeta1.GetComponent<AtomicScript> ().isPresent ()
 			& Tarjeta2.GetComponent<AtomicScript> ().isPresent ())
 		{
-			Tarjeta1.transform.GetChild (0).gameObject.SetActive (false);
-			Tarjeta2.transform.GetChild (0).gameObject.SetActive (false);
-			modificarTexto (Tarjeta1, false);
-			modificarTexto (Tarjeta2, false);
 			var Position = new Vector3 ((Tarjeta1.transform.position.x + Tarjeta2.transform.position.x) / 2f,
 				               (Tarjeta1.transform.position.y + Tarjeta2.transform.position.y) / 2f,
 				               (Tarjeta1.transform.position.z + Tarjeta2.transform.position.z) / 2f);
 			if (!Molecula)
 			{
+				Tarjeta1.transform.GetChild (0).gameObject.SetActive (false);
+				Tarjeta2.transform.GetChild (0).gameObject.SetActive (false);
+				modificarTexto (Tarjeta1, false);
+				modificarTexto (Tarjeta2, false);
+				Tarjeta1.GetComponent<AtomicScript> ().incrementNumInstancias ();
+				Tarjeta2.GetComponent<AtomicScript> ().incrementNumInstancias ();
 				Molecula = (GameObject)Instantiate (Prefab, Position, new Quaternion (0f, 0f, 0f, 0f));
 				Molecula.name = nombre;
 			}
@@ -60,12 +62,19 @@ public class AtomicController : MonoBehaviour {
 		else if (Molecula)
 		{
 			Destroy (Molecula);
-			Tarjeta1.transform.GetChild (0).gameObject.SetActive (true);
-			Tarjeta2.transform.GetChild (0).gameObject.SetActive (true);
-			if (text)
+			Tarjeta1.GetComponent<AtomicScript> ().decrementNumInstancias ();
+			Tarjeta2.GetComponent<AtomicScript> ().decrementNumInstancias ();
+			if (Tarjeta1.GetComponent<AtomicScript> ().getNumInstancias () == 0)
 			{
-				modificarTexto (Tarjeta1, true);
-				modificarTexto (Tarjeta2, true);
+				Tarjeta1.transform.GetChild (0).gameObject.SetActive (true);
+				if (text)
+					modificarTexto (Tarjeta1, true);
+			}
+			if (Tarjeta2.GetComponent<AtomicScript> ().getNumInstancias () == 0)
+			{
+				Tarjeta2.transform.GetChild (0).gameObject.SetActive (true);
+				if (text)
+					modificarTexto (Tarjeta2, true);
 			}
 		}
 	}
@@ -73,12 +82,18 @@ public class AtomicController : MonoBehaviour {
 	private void modificarTextos ()
 	{
 		text = !text;
-		modificarTexto (H, text);
-		modificarTexto (C, text);
-		modificarTexto (N, text);
-		modificarTexto (O, text);
-		modificarTexto (Na, text);
-		modificarTexto (Cl, text);
+		if (H.GetComponent<AtomicScript> ().getNumInstancias () == 0)
+			modificarTexto (H, text);
+		if (C.GetComponent<AtomicScript> ().getNumInstancias () == 0)
+			modificarTexto (C, text);
+		if (N.GetComponent<AtomicScript> ().getNumInstancias () == 0)
+			modificarTexto (N, text);
+		if (O.GetComponent<AtomicScript> ().getNumInstancias () == 0)
+			modificarTexto (O, text);
+		if (Na.GetComponent<AtomicScript> ().getNumInstancias () == 0)
+			modificarTexto (Na, text);
+		if (Cl.GetComponent<AtomicScript> ().getNumInstancias () == 0)
+			modificarTexto (Cl, text);
 	}
 
 	private void modificarTexto (GameObject objeto, bool valor)
