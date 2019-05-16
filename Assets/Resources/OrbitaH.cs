@@ -14,6 +14,6 @@ public class OrbitaH : MonoBehaviour {
 	}
 
 	void Update () {
-		orbita.transform.Rotate (0f, 1.25f, 0f);
+		orbita.transform.Rotate (new Vector3(0f, 25f, 0f)*Time.deltaTime);
 	}
 }

@@ -22,8 +22,8 @@ public class OrbitaNa : MonoBehaviour {
 	}
 
 	void Update () {
-		orbita1.transform.Rotate (0f, 1.25f, 0f);
-		orbita2.transform.Rotate (0f, -1.25f, 0f);
-		orbita3.transform.Rotate (0f, 1.25f, 0f);
+		orbita1.transform.Rotate (new Vector3(0f, 25f, 0f)*Time.deltaTime);
+		orbita2.transform.Rotate (new Vector3(0f, -25f, 0f)*Time.deltaTime);
+		orbita3.transform.Rotate (new Vector3(0f, 25f, 0f)*Time.deltaTime);
 	}
 }
